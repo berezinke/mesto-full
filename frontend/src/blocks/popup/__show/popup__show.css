@@ -1,0 +1,11 @@
+.popup__show {
+  margin: 0;
+  padding: 0;
+  max-width: calc(75vw + 38px);
+  max-height: calc(75vh + 38px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 5;
+}

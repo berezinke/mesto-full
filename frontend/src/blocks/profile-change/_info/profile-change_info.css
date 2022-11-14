@@ -1,0 +1,18 @@
+.profile-change_info {
+  margin: 0;
+  padding: 60px 0 16px 0;
+  width: 430px;
+  
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+}
+@media screen and (max-width: 1280px) {
+  .profile-change_info{
+    width: calc(0.15417*100vw + 233px);
+  }
+}

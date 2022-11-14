@@ -1,0 +1,10 @@
+.identification__link {
+  margin: auto;
+  padding: 0;
+  display: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.22em;
+  color: white;
+  background-color: black;  
+}

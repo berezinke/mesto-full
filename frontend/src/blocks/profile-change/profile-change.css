@@ -1,0 +1,16 @@
+.profile-change {
+  margin: 0;
+  padding: 0;
+  width: 430px;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+@media screen and (max-width: 1280px) {
+  .profile-change{
+    width: calc(0.15417*100vw + 233px);
+  }
+}

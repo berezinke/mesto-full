@@ -1,0 +1,21 @@
+.identification__container {
+  margin: auto;
+  margin-left: 45%;
+  margin-top: 45%;
+  padding: auto;
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 5;
+  
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+}
+@media screen and (max-width: 1280px) {
+  .identification__container{
+    width: calc(0.19583*100vw + 219px);
+    margin-left: 35%;
+    margin-top: 35%;
+  }
+}

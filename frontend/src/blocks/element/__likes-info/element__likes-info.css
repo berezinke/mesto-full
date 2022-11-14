@@ -1,0 +1,12 @@
+.element__likes-info {
+  position: relative;
+  margin: 0;
+  padding: 0 auto;
+  /*padding-left: 7px;*/
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.23em;
+}
+.element__likes-info:hover{
+  opacity: 0.5;
+}

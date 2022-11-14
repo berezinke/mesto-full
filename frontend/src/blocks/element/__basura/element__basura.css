@@ -1,0 +1,22 @@
+.element__basura {
+  position: absolute;
+  display: none;
+  top: 20px;
+  right: 20px;
+  margin: 0;
+  padding: 0;
+  width: 18px;
+  height: 19px;
+  cursor: pointer;
+  border: none;
+  background-image: url('../../../images/trash.svg');
+  background-size: contain;
+  background-color: rgba(248, 248, 248, 0.5);
+  box-shadow: 1px 1px white;
+}
+.element__basura:hover{
+  opacity: 0.5;
+}
+.element__basura_activ {
+  display: flex;
+}

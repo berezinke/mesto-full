@@ -1,0 +1,27 @@
+.identification__input {
+  padding: 0;
+  margin: 0 36px;
+  position: relative;
+  padding-bottom: 11px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21em;
+  text-align: left;
+  color: white;
+  border: none;
+  background-color: black;
+  border-bottom: 2px solid rgba(238, 238, 238, 1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+ .identification__input:last-of-type{
+   margin-top: 13px;
+ }
+ @media screen and (max-width: 320px) {
+  .identification__input {
+    margin: 0 22px;
+  }
+}

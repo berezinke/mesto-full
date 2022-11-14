@@ -1,0 +1,9 @@
+.popup__list {
+  margin: 0;
+  margin-right: 38px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}

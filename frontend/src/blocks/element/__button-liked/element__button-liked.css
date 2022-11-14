@@ -1,0 +1,15 @@
+.element__button-liked {
+  position: relative;
+  margin: 0;
+  padding: 0;
+    
+  width: 22px;
+  height: 19px;
+  border: none;
+  cursor: pointer;
+  background-color: white;
+  
+}
+.element__button-liked:hover{
+  opacity: 0.5;
+}

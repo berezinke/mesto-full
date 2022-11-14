@@ -1,0 +1,24 @@
+.identification__submit {
+  padding: 0;
+  margin: 200px 36px 37px;
+  
+  height: 50px;
+  background-color: white;
+  border-radius: 2px;
+  color: black;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22em;
+  cursor: pointer;
+  border: none;
+}
+.identification__submit:hover {
+  opacity: 0.8;
+}
+@media screen and (max-width: 320px) {
+  .identification__submit{
+    margin: 45px 22px 25px;
+    font-size: 14px;
+    height: 46px;
+  }
+}
