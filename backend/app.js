@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/crash-test', () => {
   setTimeout(() => {
+    console.dir('server drop!');
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
