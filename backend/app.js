@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 const { celebrate, Joi, errors } = require('celebrate');
 const auth = require('./middlewares/auth');
 const catchErrors = require('./middlewares/errors');
@@ -21,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/crash-test', () => {
   setTimeout(() => {
-    console.dir('server drop!');
+    // console.dir('server drop!');
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
