@@ -28,7 +28,6 @@ app.get('/crash-test', () => {
 });
 
 app.use('/*', require('./middlewares/corses').allowRequest);
-// app.use('/*', require('./middlewares/corses').allowRequest);
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
