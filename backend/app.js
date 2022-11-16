@@ -27,6 +27,8 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
+app.use('/*', require('./middlewares/corses').allowRequest);
+
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
