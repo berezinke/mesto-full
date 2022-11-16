@@ -1,6 +1,5 @@
 // import React from 'react';
 import {headers, baseUrl, baseEndPointReg, baseEndPointAuth, baseMethodAuth, baseTitle,
-  baseSuccessReturnAuth, baseSuccessReturnCheck,
   tokenEndPoint, baseMethodValidToken, baseTitleValidToken, baseSuccessReturnValidToken } 
   from './Utils.js'
 
@@ -126,7 +125,9 @@ class Api {
 
   // Регистрация
   userRegister (userEmail, userPassword) {
-    return fetch(this._baseUrl + this._baseEndPointReg, {
+    const pathToServ = this._baseUrl + this._baseEndPointReg;
+    console.log(pathToServ);
+    return fetch(pathToServ, {
       method: this._methodAuth,
       headers: this._baseTitle,
       body: JSON.stringify({"email": userEmail, "password": userPassword})    
