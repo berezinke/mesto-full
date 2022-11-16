@@ -25,7 +25,7 @@ export const cardSelector = '#elementTemplate';
 // const miCogort = 'cohort-46';
 export const miToken = '17354b5a-cdf3-4826-b8f6-745070d32c9c';
 // export const pathToServer = 'api.mesto-server.students.nomoredomains.icu' // `https://mesto.nomoreparties.co/v1/${miCogort}`;
-export const baseUrl = 'api.mesto-server.students.nomoredomains.icu' // 'https://auth.nomoreparties.co';
+export const baseUrl = 'https://api.mesto-server.students.nomoredomains.icu' // 'https://auth.nomoreparties.co';
 export const headers = {
   authorization: miToken,
   'Content-Type': 'application/json'
