@@ -16,6 +16,7 @@ module.exports.allowRequest = (req, res, next) => {
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
     res.header('Access-Control-Allow-Headers', requestHeaders);
+    res.header('Access-Control-Allow-Origin', origin);
     return res.end();
   }
   next(); // пропускаем запрос дальше
