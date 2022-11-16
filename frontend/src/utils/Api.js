@@ -1,20 +1,13 @@
 // import React from 'react';
-import {pathToServer, headers, baseUrl, baseEndPointReg, baseEndPointAuth, baseMethodAuth, baseTitle,
+import {headers, baseUrl, baseEndPointReg, baseEndPointAuth, baseMethodAuth, baseTitle,
   baseSuccessReturnAuth, baseSuccessReturnCheck,
   tokenEndPoint, baseMethodValidToken, baseTitleValidToken, baseSuccessReturnValidToken } 
   from './Utils.js'
 
 class Api {
   constructor() {
-
-    /**
-     pathToServer, headers1, baseUrl, baseEndPointReg, baseEndPointAuth, baseMethodAuth, baseTitle,
-    baseSuccessReturnAuth, baseSuccessReturnCheck,
-    baseMethodValidToken, baseTitleValidToken, baseSuccessReturnValidToken
-     */
-
-    this._pathToCard = `${pathToServer}/cards`;
-    this._pathToAuthor = `${pathToServer}/users/me`;
+    this._pathToCard = `${baseUrl}/cards`;
+    this._pathToAuthor = `${baseUrl}/users/me`;
     this._pathToAvatar = this._pathToAuthor + '/avatar';
     this._headers = headers;
     this._baseUrl = baseUrl;
@@ -26,18 +19,6 @@ class Api {
     this._tokenEndPoint = tokenEndPoint;
     this._baseMethodValidToken = baseMethodValidToken;
     this._baseTitleValidToken = baseTitleValidToken;
-
-    /*this._baseUrl = this._baseUrl.bind(this);
-    this._methodAuth = this._methodAuth.bind(this);
-    this._baseTitle = this._baseTitle.bind(this);
-    this._baseEndPointReg = this._baseEndPointReg.bind(this);
-    this._baseEndPointAuth = this._baseEndPointAuth.bind(this);
-    
-    this._tokenEndPoint = this._tokenEndPoint.bind(this);
-    this._baseMethodValidToken = this._baseMethodValidToken.bind(this);
-    this._baseTitleValidToken = this._baseTitleValidToken.bind(this);*/
-
-
   };
 
   // Запись и обратно
@@ -179,5 +160,5 @@ class Api {
   }
 };
 
-const exApi = new Api(); //pathToServer, headers
+const exApi = new Api();
 export default exApi;
