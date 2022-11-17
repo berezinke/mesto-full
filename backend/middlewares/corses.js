@@ -6,6 +6,8 @@ module.exports.allowRequest = (req, res, next) => {
     'http://mesto-server.students.nomoredomains.icu',
     'https://mesto-server.students.nomoredomains.icu',
     'localhost:3000',
+    'http://localhost:3000',
+    'https://localhost:3000',
   ];
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
@@ -19,5 +21,5 @@ module.exports.allowRequest = (req, res, next) => {
     res.header('Access-Control-Allow-Origin', origin);
     return res.end();
   }
-  next(); // пропускаем запрос дальше
+  return next(); // пропускаем запрос дальше
 };

@@ -136,8 +136,8 @@ class Api {
   // Авторизация
   userAuthorize (userEmail, userPassword) {
     return fetch(this._baseUrl + this._baseEndPointAuth, {
-      method: this._methodAuth,
-      headers: this._baseTitle,
+      method: this._methodAuth, // 'POST'
+      headers: this._baseTitle, // {'Accept': 'application/json', "Content-Type": "application/json"};
       body: JSON.stringify({"email":userEmail, "password": userPassword})
     })
     .then((res) => {return this._isDone(res)})
@@ -168,6 +168,7 @@ class Api {
     let arrHeaders = this._baseTitleValidToken;
     let meTh = this._baseMethodValidToken;
 
+    console.log(this._baseTitleValidToken.Authorization);
     return fetch(path, {
       method: meTh,
       headers: arrHeaders})
