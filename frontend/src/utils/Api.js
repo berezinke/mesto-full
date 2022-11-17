@@ -170,8 +170,7 @@ class Api {
 
   // Проверка токена
   userCheckToken (userJWT) {
-    // this._baseTitleValidToken.Authorization = this._baseTitleValidToken.Authorization + userJWT;
-    this._baseTitleValidToken.Authorization = userJWT;
+    this._baseTitleValidToken.Authorization = this._baseTitleValidToken.Authorization + userJWT;
     let path = this._baseUrl + this._tokenEndPoint; // '/users/me'
     let arrHeaders = this._baseTitleValidToken;
     let meTh = this._baseMethodValidToken; // 'GET'
