@@ -36,7 +36,7 @@ export const headers = {
 export const baseEndPointReg = '/signup';
 export const baseEndPointAuth = '/signin';
 export const baseMethodAuth = 'POST';
-export const baseTitle = {'Accept': 'application/json', "Content-Type": "application/json"};
+export const baseTitle = {'accept': 'application/json', "Content-Type": "application/json"};
 export const baseBodyAuth = {"password": "somepassword", "email": "email@yandex.ru"};
 export const baseSuccessReturnAuth = {"data": {"_id": "5f5204c577488bcaa8b7bdf2", "email": "email@yandex.ru"}};
 export const baseBodyCheck = {"password": "dsfsdfsdfsdf", "email": "email@email.ru"};
@@ -45,8 +45,8 @@ export const baseSuccessReturnCheck = {
 };
 export const tokenEndPoint = '/users/me';
 export const baseMethodValidToken = 'GET';
-export const baseTitleValidToken = {'Accept': 'application/json', "Content-Type": "application/json",
-                                    "Authorization" : "Bearer "};
+export const baseTitleValidToken = {'accept': 'application/json', "Content-Type": "application/json",
+                                    "authorization" : "Bearer "};
 export const baseSuccessReturnValidToken = {"_id":"1f525cf06e02630312f3fed7", "email":"email@email.ru"};
 export const objAuth = {authReg:['sign-up', '  Зарегистрироваться'], authEnter:['sign-in', '  Войти'], authExit:['sign-in', '  Выйти']};
 

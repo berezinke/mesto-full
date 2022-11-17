@@ -167,13 +167,13 @@ class Api {
 
   // Проверка токена
   userCheckToken (userJWT) {
-    this._baseTitleValidToken.Authorization = this._baseTitleValidToken.Authorization + userJWT;
+    this._baseTitleValidToken.authorization = this._baseTitleValidToken.authorization + userJWT;
     let path = this._baseUrl + this._tokenEndPoint; // '/users/me'
     let arrHeaders = this._baseTitleValidToken;
     let meTh = this._baseMethodValidToken; // 'GET'
 
     console.log('2');
-    console.log(this._baseTitleValidToken.Authorization);
+    console.log(this._baseTitleValidToken.authorization);
     console.log('3');
     console.log(arrHeaders);
     return fetch(path, {

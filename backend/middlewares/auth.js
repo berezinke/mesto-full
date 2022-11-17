@@ -4,9 +4,9 @@ const NotAuthError = require('../errores/errornotauth');
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports.authUser = (req, res, next) => {
-  const { Authorization } = req.headers;
+  const { authorization } = req.headers;
 
-  /* if (!Authorization || !Authorization.startsWith('Bearer ')) {
+  /* if (!authorization || !authorization.startsWith('Bearer ')) {
     throw new NotAuthError('Необходима авторизация1');
   } */
   if (!req.headers) {
@@ -14,23 +14,24 @@ module.exports.authUser = (req, res, next) => {
   }
 
   if (!req.headers.Accept) {
+    console.dir(req.headers);
     throw new NotAuthError('Необходима авторизация100');
   }
 
-  if (!req.headers.Authorization) {
+  if (!req.headers.authorization) {
     // throw new NotAuthError('Необходима авторизация101');
     throw new NotAuthError(req.headers);
   }
 
-  if (!Authorization) {
+  if (!authorization) {
     throw new NotAuthError('Необходима авторизация11');
   }
 
-  if (!Authorization.startsWith('Bearer ')) {
+  if (!authorization.startsWith('Bearer ')) {
     throw new NotAuthError('Необходима авторизация12');
   }
 
-  const token = Authorization.replace('Bearer ', '');
+  const token = authorization.replace('Bearer ', '');
   let payload;
 
   try {
