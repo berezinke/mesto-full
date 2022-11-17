@@ -1,10 +1,18 @@
 // import React from 'react';
 import {headers, baseUrl, baseEndPointReg, baseEndPointAuth, baseMethodAuth, baseTitle,
+  baseSuccessReturnAuth, baseSuccessReturnCheck,
   tokenEndPoint, baseMethodValidToken, baseTitleValidToken, baseSuccessReturnValidToken } 
   from './Utils.js'
 
 class Api {
   constructor() {
+
+    /**
+     pathToServer, headers1, baseUrl, baseEndPointReg, baseEndPointAuth, baseMethodAuth, baseTitle,
+    baseSuccessReturnAuth, baseSuccessReturnCheck,
+    baseMethodValidToken, baseTitleValidToken, baseSuccessReturnValidToken
+     */
+
     this._pathToCard = `${baseUrl}/cards`;
     this._pathToAuthor = `${baseUrl}/users/me`;
     this._pathToAvatar = this._pathToAuthor + '/avatar';
@@ -18,6 +26,18 @@ class Api {
     this._tokenEndPoint = tokenEndPoint;
     this._baseMethodValidToken = baseMethodValidToken;
     this._baseTitleValidToken = baseTitleValidToken;
+
+    /*this._baseUrl = this._baseUrl.bind(this);
+    this._methodAuth = this._methodAuth.bind(this);
+    this._baseTitle = this._baseTitle.bind(this);
+    this._baseEndPointReg = this._baseEndPointReg.bind(this);
+    this._baseEndPointAuth = this._baseEndPointAuth.bind(this);
+    
+    this._tokenEndPoint = this._tokenEndPoint.bind(this);
+    this._baseMethodValidToken = this._baseMethodValidToken.bind(this);
+    this._baseTitleValidToken = this._baseTitleValidToken.bind(this);*/
+
+
   };
 
   // Запись и обратно
@@ -125,9 +145,9 @@ class Api {
 
   // Регистрация
   userRegister (userEmail, userPassword) {
-    const pathToServ = this._baseUrl + this._baseEndPointReg;
-    console.log(pathToServ);
-    return fetch(pathToServ, {
+    const pathToserv = this._baseUrl + this._baseEndPointReg;
+    console.log(pathToserv);
+    return fetch(this._baseUrl + this._baseEndPointReg, {
       method: this._methodAuth,
       headers: this._baseTitle,
       body: JSON.stringify({"email": userEmail, "password": userPassword})    
@@ -161,5 +181,5 @@ class Api {
   }
 };
 
-const exApi = new Api();
+const exApi = new Api(); //pathToServer, headers
 export default exApi;
