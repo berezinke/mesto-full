@@ -9,6 +9,14 @@ module.exports.authUser = (req, res, next) => {
   /* if (!Authorization || !Authorization.startsWith('Bearer ')) {
     throw new NotAuthError('Необходима авторизация1');
   } */
+  if (!req.headers) {
+    throw new NotAuthError('Необходима авторизация10');
+  }
+
+  if (!req.headers.Authorization) {
+    throw new NotAuthError('Необходима авторизация101');
+  }
+
   if (!Authorization) {
     throw new NotAuthError('Необходима авторизация11');
   }
@@ -16,7 +24,6 @@ module.exports.authUser = (req, res, next) => {
   if (!Authorization.startsWith('Bearer ')) {
     throw new NotAuthError('Необходима авторизация12');
   }
-
 
   const token = Authorization.replace('Bearer ', '');
   let payload;
