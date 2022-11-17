@@ -50,10 +50,7 @@ class Api {
       .then((err) => {
         err.statusCode = res.status; 
         return Promise.reject(err);
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      })      
   }
 
   // Получение информации о карточках
