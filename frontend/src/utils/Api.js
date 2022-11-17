@@ -56,7 +56,7 @@ class Api {
   // Получение информации о карточках
   getInitCards() {
     return fetch(this._pathToCard, {
-      headers: this._headers
+      // headers: this._headers
     }).then((res) => {
       return this._isDone(res)
     })
