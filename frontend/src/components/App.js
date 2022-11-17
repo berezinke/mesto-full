@@ -172,6 +172,8 @@ function App() {
   // Авторизация
   function handleTokenCheck(exApi) {
     if (localStorage.getItem('jwt')) {
+      console.log('1');
+      console.log(localStorage.getItem('jwt'));
       exApi.userCheckToken(localStorage.getItem('jwt')).then((res) => {
         if (res) {
           setMailUserInfo(res.data.email);

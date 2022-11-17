@@ -45,7 +45,15 @@ class Api {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Ошибка: ${res.status}`);
+    // return Promise.reject(`Ошибка: ${res.status}`);
+    return res.json()
+      .then((err) => {
+        err.statusCode = res.status; 
+        return Promise.reject(err);
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   // Получение информации о карточках
@@ -162,13 +170,16 @@ class Api {
 
   // Проверка токена
   userCheckToken (userJWT) {
-    this._baseTitleValidToken.Authorization = this._baseTitleValidToken.Authorization + userJWT;
-    // this._baseTitleValidToken.Authorization = this._baseTitleValidToken.Authorization + etalon;
-    let path = this._baseUrl + this._tokenEndPoint;
+    // this._baseTitleValidToken.Authorization = this._baseTitleValidToken.Authorization + userJWT;
+    this._baseTitleValidToken.Authorization = userJWT;
+    let path = this._baseUrl + this._tokenEndPoint; // '/users/me'
     let arrHeaders = this._baseTitleValidToken;
-    let meTh = this._baseMethodValidToken;
+    let meTh = this._baseMethodValidToken; // 'GET'
 
+    console.log('2');
     console.log(this._baseTitleValidToken.Authorization);
+    console.log('3');
+    console.log(arrHeaders);
     return fetch(path, {
       method: meTh,
       headers: arrHeaders})

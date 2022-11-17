@@ -25,14 +25,21 @@ module.exports.getUserById = (req, res, next) => {
 };
 
 module.exports.getOwner = (req, res, next) => {
+  console.dir(11);
+  console.dir(req.user._id);
+  console.dir(req);
   User.findById(req.user._id)
     .then((user) => {
+      console.dir(22);
+      console.dir(user);
       if (!user) {
         throw new NotFoundError('Таких данных в базе нет');
       }
       res.send({ data: user });
     })
     .catch((err) => {
+      console.dir(33);
+      console.dir(err);
       next(err);
     });
 };
