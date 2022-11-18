@@ -65,7 +65,7 @@ class Api {
   // Получение иформации об авторе
   getAuthorInfo() {
     return fetch(this._pathToAuthor, {
-      headers: this._headers
+      // headers: this._headers
     }).then((res) => {
       return this._isDone(res)
    })
@@ -75,7 +75,7 @@ class Api {
   setAuthorInfo({newName, newAbout}) {
     return fetch(this._pathToAuthor, {
       method: 'PATCH',
-      headers: this._headers,
+      // headers: this._headers,
       body: JSON.stringify({name: newName, about: newAbout})
     }).then((res) => {
       return this._isDone(res)
@@ -87,7 +87,7 @@ class Api {
     
     return fetch(this._pathToCard, {
       method: 'POST',
-      headers: this._headers,
+      // headers: this._headers,
       body: JSON.stringify({name: newName, link: newLink})
     }).then((res) => {
       return this._isDone(res)
@@ -99,7 +99,7 @@ class Api {
     const pathToOneCard = this._pathToCard + '/' + idCard
     return fetch(pathToOneCard, {
       method: 'DELETE',
-      headers: this._headers
+      // headers: this._headers
     }).then((res) => {
       return this._isDone(res)
     })
@@ -110,7 +110,7 @@ class Api {
     
     return fetch(pathToOneCard, {
       method: 'PUT',
-      headers: this._headers
+      // headers: this._headers
     }).then((res) => {
       return this._isDone(res)
     })
@@ -121,7 +121,7 @@ class Api {
     
     return fetch(pathToOneCard, {
       method: 'DELETE',
-      headers: this._headers
+      // headers: this._headers
     }).then((res) => {
       return this._isDone(res)
     })
@@ -131,7 +131,7 @@ class Api {
 
     return fetch(this._pathToAvatar, {
       method: 'PATCH',
-      headers: this._headers,
+      // headers: this._headers,
       body: JSON.stringify({avatar: newAvatar})
     }).then((res) => {
       return this._isDone(res)
@@ -173,15 +173,13 @@ class Api {
     let meTh = this._baseMethodValidToken; // 'GET'
 
     console.log('2');
-    console.log(this._baseTitleValidToken.authorization);
-    console.log('3');
-    console.log(arrHeaders);
     return fetch(path, {
       method: meTh,
       headers: arrHeaders})
     .then((res) => {
       return this._isDone(res)})
     .then((res) => {
+      console.log('3');
       return res;
     })
     .catch((err) => {
