@@ -9,7 +9,7 @@ module.exports.authUser = (req, res, next) => {
   /* if (!authorization || !authorization.startsWith('Bearer ')) {
     throw new NotAuthError('Необходима авторизация1');
   } */
-  if (!req.user) {
+  // if (!req.user) {
     if (!req.headers) {
       throw new NotAuthError('Необходима авторизация10');
     }
@@ -42,7 +42,7 @@ module.exports.authUser = (req, res, next) => {
     }
 
     req.user = payload; // записываем пейлоуд в объект запроса
-  }
+  // }
 
   next(); // пропускаем запрос дальше
 };
