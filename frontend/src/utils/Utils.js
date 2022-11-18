@@ -22,14 +22,14 @@ export const cardsPosition = document.querySelector('.elements'); // Созда�
 export const cardSelector = '#elementTemplate';
 
 // Данные о группе, токене ...
-const miCogort = 'cohort-46';
-export const miToken = '17354b5a-cdf3-4826-b8f6-745070d32c9c';
+// const miCogort = 'cohort-46';
+// export const miToken = '17354b5a-cdf3-4826-b8f6-745070d32c9c';
 // export const pathToServer = `https://mesto.nomoreparties.co/v1/${miCogort}`;
 export const baseUrl = 'https://api.mesto-server.students.nomoredomains.icu';
-export const headers = {
-  authorization: miToken,
-  'Content-Type': 'application/json'
-};
+// export const headers = {
+  // authorization: miToken,
+  // 'Content-Type': 'application/json'
+// };
 
 // Авторизация
 // export const baseUrl = 'https://auth.nomoreparties.co';
@@ -38,16 +38,16 @@ export const baseEndPointAuth = '/signin';
 export const baseMethodAuth = 'POST';
 export const baseTitle = {'accept': 'application/json', "Content-Type": "application/json"};
 export const baseBodyAuth = {"password": "somepassword", "email": "email@yandex.ru"};
-export const baseSuccessReturnAuth = {"data": {"_id": "5f5204c577488bcaa8b7bdf2", "email": "email@yandex.ru"}};
+// export const baseSuccessReturnAuth = {"data": {"_id": "5f5204c577488bcaa8b7bdf2", "email": "email@yandex.ru"}};
 export const baseBodyCheck = {"password": "dsfsdfsdfsdf", "email": "email@email.ru"};
-export const baseSuccessReturnCheck = {
-  "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjUxNDhlNWJiODhmZGNhOTIxYjZhYzciLCJpYXQiOjE1OTkyMTExNzN9.Q3DVLh7t0f0BjyG9gh3UlUREYQxl2chdGTGy701lF6I"
-};
+// export const baseSuccessReturnCheck = {
+//   "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjUxNDhlNWJiODhmZGNhOTIxYjZhYzciLCJpYXQiOjE1OTkyMTExNzN9.Q3DVLh7t0f0BjyG9gh3UlUREYQxl2chdGTGy701lF6I"
+// };
 export const tokenEndPoint = '/users/me';
 export const baseMethodValidToken = 'GET';
 export const baseTitleValidToken = {'accept': 'application/json', "Content-Type": "application/json",
                                     "authorization" : "Bearer "};
-export const baseSuccessReturnValidToken = {"_id":"1f525cf06e02630312f3fed7", "email":"email@email.ru"};
+// export const baseSuccessReturnValidToken = {"_id":"1f525cf06e02630312f3fed7", "email":"email@email.ru"};
 export const objAuth = {authReg:['sign-up', '  Зарегистрироваться'], authEnter:['sign-in', '  Войти'], authExit:['sign-in', '  Выйти']};
 
 export const infoText = {messageOkReg: {text: 'Вы успешно зарегистрировались!', image: okPic},

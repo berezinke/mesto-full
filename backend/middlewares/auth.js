@@ -20,7 +20,7 @@ module.exports.authUser = (req, res, next) => {
 
   if (!req.headers.authorization) {
     // throw new NotAuthError('Необходима авторизация101');
-    throw new NotAuthError(req.headers);
+    throw new NotAuthError(req.headers.authorization);
   }
 
   if (!authorization) {

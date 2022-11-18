@@ -1,7 +1,6 @@
 // import React from 'react';
-import {headers, baseUrl, baseEndPointReg, baseEndPointAuth, baseMethodAuth, baseTitle,
-  baseSuccessReturnAuth, baseSuccessReturnCheck,
-  tokenEndPoint, baseMethodValidToken, baseTitleValidToken, baseSuccessReturnValidToken } 
+import { baseUrl, baseEndPointReg, baseEndPointAuth, baseMethodAuth, baseTitle,
+  tokenEndPoint, baseMethodValidToken, baseTitleValidToken } 
   from './Utils.js'
 
 class Api {
@@ -16,7 +15,7 @@ class Api {
     this._pathToCard = `${baseUrl}/cards`;
     this._pathToAuthor = `${baseUrl}/users/me`;
     this._pathToAvatar = this._pathToAuthor + '/avatar';
-    this._headers = headers;
+    // this._headers = headers;
     this._baseUrl = baseUrl;
     this._methodAuth = baseMethodAuth;
     this._baseTitle = baseTitle;
@@ -55,12 +54,11 @@ class Api {
 
   // Получение информации о карточках
   getInitCards() {
-    return fetch(this._pathToCard, {
-      // headers: this._headers
-    }).then((res) => {
+    return fetch(this._pathToCard).then((res) => {
       return this._isDone(res)
     })
   };
+  // , { headers: this._headers }
   
   // Получение иформации об авторе
   getAuthorInfo() {
@@ -183,6 +181,7 @@ class Api {
       return res;
     })
     .catch((err) => {
+      console.log('4');
       console.log(err)});
   }
 };
