@@ -176,6 +176,7 @@ function App() {
       // console.log(localStorage.getItem('jwt'));
       exApi.userCheckToken(localStorage.getItem('jwt')).then((res) => {
         if (res) {
+          console.log(res);
           setMailUserInfo(res.data.email);
           setLoggedIn(true);
           history.push("/");

@@ -4,13 +4,10 @@ const NotAuthError = require('../errores/errornotauth');
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports.authUser = (req, res, next) => {
-  let { authorization } = req.headers;
+  const { authorization } = req.headers;
 
   if (!authorization) {
-    if (!req.user) {
-      throw new NotAuthError('Необходима авторизация1111');
-    }
-    authorization = req.user;
+    throw new NotAuthError('Необходима авторизация1111');
   }
 
   if (!authorization.startsWith('Bearer ')) {

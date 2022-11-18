@@ -26,6 +26,8 @@ class Api {
     this._baseMethodValidToken = baseMethodValidToken;
     this._baseTitleValidToken = baseTitleValidToken;
 
+    this.tokenUser = '';
+
     /*this._baseUrl = this._baseUrl.bind(this);
     this._methodAuth = this._methodAuth.bind(this);
     this._baseTitle = this._baseTitle.bind(this);
@@ -54,7 +56,9 @@ class Api {
 
   // Получение информации о карточках
   getInitCards() {
-    return fetch(this._pathToCard).then((res) => {
+    console.log('Cards');
+    console.log(this.tokenUser);
+    return fetch(this._pathToCard, {}).then((res) => {
       return this._isDone(res)
     })
   };
@@ -155,6 +159,8 @@ class Api {
     console.log(this._methodAuth);
     console.log(this._baseTitle);
 
+    // let setHeaders = this._setArrHeaders (methodServ, userJWT)
+
     return fetch(pathToserv, {
       method: this._methodAuth,
       headers: this._baseTitle,
@@ -174,23 +180,66 @@ class Api {
     let arrHeaders = this._baseTitleValidToken;
     let meTh = this._baseMethodValidToken; // 'GET'
 
+    /* this._baseTitleValidToken.Authorization = this._baseTitleValidToken.Authorization + userJWT;
+    
+    let path = this._baseUrl + this._tokenEndPoint;
+    let arrHeaders = this._baseTitleValidToken;
+    let meTh = this._baseMethodValidToken;
+
+    return fetch(path, {
+      method: meTh,
+      headers: arrHeaders}) */
+
+
+
+
+
     console.log('2');
     console.log(arrHeaders);
     console.log(path);
     console.log(meTh);
+
+    let setHeaders = this._setArrHeaders(meTh, userJWT);
+    console.log('77');
+    console.log(setHeaders);
+    console.log(userJWT);
+
+
+    // return fetch(path, setHeaders)
     return fetch(path, {
       method: meTh,
       headers: arrHeaders})
     .then((res) => {
       return this._isDone(res)})
     .then((res) => {
+      console.log('444');
+      console.log(res);
       console.log('3');
+      this.tokenUser = this._baseTitleValidToken.authorization;
       return res;
     })
     .catch((err) => {
       console.log('4');
       console.log(err)});
+
+    // {
+    //   method: meTh,
+    //  headers: arrHeaders}
   }
+
+  _setArrHeaders (methodServ, userJWT) {
+    let token = userJWT // .replace('Bearer ', '')
+    let arrHeaders = this._baseTitleValidToken;
+
+    token = this._baseTitleValidToken.authorization + token;
+    arrHeaders.authorization = token;
+
+    return {method: methodServ,
+      headers: arrHeaders}
+
+    // this._setArrHeaders (methodServ, this.tokenUser)
+  };
+
 };
 
 const exApi = new Api(); //pathToServer, headers
