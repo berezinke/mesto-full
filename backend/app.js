@@ -27,7 +27,7 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.use('/*', require('./middlewares/corses').allowRequest);
+app.use(require('./middlewares/corses').allowRequest);
 
 app.use(auth.authUser);
 
