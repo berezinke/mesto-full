@@ -149,15 +149,19 @@ class Api {
   // Регистрация
   userRegister (userEmail, userPassword) {
     const pathToserv = this._baseUrl + this._baseEndPointReg;
+
+    console.log('Reg');
     console.log(pathToserv);
-    return fetch(this._baseUrl + this._baseEndPointReg, {
+    console.log(this._methodAuth);
+    console.log(this._baseTitle);
+
+    return fetch(pathToserv, {
       method: this._methodAuth,
       headers: this._baseTitle,
       body: JSON.stringify({"email": userEmail, "password": userPassword})    
     })
     .then((res) => {return this._isDone(res)})
     .then((res) => {
-      
       return res;
     })
     .catch((err) => console.log(err));
@@ -171,6 +175,9 @@ class Api {
     let meTh = this._baseMethodValidToken; // 'GET'
 
     console.log('2');
+    console.log(arrHeaders);
+    console.log(path);
+    console.log(meTh);
     return fetch(path, {
       method: meTh,
       headers: arrHeaders})
