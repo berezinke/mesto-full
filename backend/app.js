@@ -29,8 +29,6 @@ app.get('/crash-test', () => {
 
 app.use(require('./middlewares/corses').allowRequest);
 
-app.use(auth.authUser);
-
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
@@ -47,6 +45,8 @@ app.post('/signin', celebrate({
     password: Joi.string().required(),
   }),
 }), require('./controllers/auth').login);
+
+app.use(auth.authUser);
 
 app.use('/users', require('./routes/users'));
 

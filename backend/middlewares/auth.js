@@ -7,7 +7,7 @@ module.exports.authUser = (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
-    throw new NotAuthError('Необходима авторизация1111');
+    throw new NotAuthError('Необходима авторизация1211');
   }
 
   if (!authorization.startsWith('Bearer ')) {
