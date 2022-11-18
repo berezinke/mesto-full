@@ -44,9 +44,8 @@ class Api {
   // Запись и обратно
   _isDone(res) {
     if (res.ok) {
-      return res.json();
+      return res.json();     
     }
-    // return Promise.reject(`Ошибка: ${res.status}`);
     return res.json()
       .then((err) => {
         err.statusCode = res.status; 
@@ -58,7 +57,9 @@ class Api {
   getInitCards() {
     console.log('Cards');
     console.log(this.tokenUser);
-    return fetch(this._pathToCard, {}).then((res) => {
+    return fetch(this._pathToCard, {
+      headers:  this._setArrHeaders(this.tokenUser)
+    }).then((res) => {
       return this._isDone(res)
     })
   };
@@ -68,6 +69,7 @@ class Api {
   getAuthorInfo() {
     return fetch(this._pathToAuthor, {
       // headers: this._headers
+      headers:  this._setArrHeaders(this.tokenUser)
     }).then((res) => {
       return this._isDone(res)
    })
@@ -147,7 +149,19 @@ class Api {
       headers: this._baseTitle, // {'Accept': 'application/json', "Content-Type": "application/json"};
       body: JSON.stringify({"email":userEmail, "password": userPassword})
     })
-    .then((res) => {return this._isDone(res)})
+    .then((res) => {
+      
+      return this._isDone(res)})
+    .then((res) => {
+      console.log('ok');
+      console.log(res);
+      if (res.token) {
+        console.log('Token');
+        this.tokenUser = res.token;
+        console.log(this.tokenUser);
+      }
+      return res;
+    })
   };
 
   // Регистрация
@@ -189,11 +203,6 @@ class Api {
     return fetch(path, {
       method: meTh,
       headers: arrHeaders}) */
-
-
-
-
-
     console.log('2');
     console.log(arrHeaders);
     console.log(path);
@@ -227,17 +236,14 @@ class Api {
     //  headers: arrHeaders}
   }
 
-  _setArrHeaders (methodServ, userJWT) {
+  _setArrHeaders (userJWT) {
     let token = userJWT // .replace('Bearer ', '')
     let arrHeaders = this._baseTitleValidToken;
 
     token = this._baseTitleValidToken.authorization + token;
     arrHeaders.authorization = token;
 
-    return {method: methodServ,
-      headers: arrHeaders}
-
-    // this._setArrHeaders (methodServ, this.tokenUser)
+    return arrHeaders
   };
 
 };

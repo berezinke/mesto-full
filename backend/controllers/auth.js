@@ -5,7 +5,7 @@ const User = require('../models/user');
 const NotAllowedError = require('../errores/errornotallowed');
 const ServerError = require('../errores/errorserver');
 
-const { NODE_ENV, JWT_SECRET } = process.env;
+// const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports.createUser = (req, res, next) => {
   const {
@@ -46,8 +46,9 @@ module.exports.login = (req, res, next) => {
 
   User.findUserByParams(email, password, next)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'simpleKey', { expiresIn: '17d' });
-      // const token = jwt.sign({ _id: user._id }, 'simpleKey', { expiresIn: '17d' });
+      // const token = jwt.sign({ _id: user._id },
+      // NODE_ENV === 'production' ? JWT_SECRET : 'simpleKey', { expiresIn: '17d' });
+      const token = jwt.sign({ _id: user._id }, 'simpleKey');
       res.send({ token });
     })
     .catch((err) => {
