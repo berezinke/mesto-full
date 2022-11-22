@@ -5,8 +5,8 @@ import {CurrentUserContext} from '../context/CurrentUserContext.js';
 
 function Card (props) {
   const resAuthor = React.useContext(CurrentUserContext);
-  const isOwn = props.card.owner._id === resAuthor._id;
-  const isLiked = props.card.likes.some(i => i._id === resAuthor._id);
+  const isOwn = props.card.owner === resAuthor._id;
+  const isLiked = props.card.likes.some(i => i === resAuthor._id);
 
   const cardDeleteButtonClassName = (
     `element__basura ${isOwn && 'element__basura_activ'}`

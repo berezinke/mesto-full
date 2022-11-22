@@ -53,8 +53,10 @@ function App() {
 
       Promise.all([promiseAuthorInfo, promiseAllCard])
       .then(([resAuthor, resAllCards]) => {
-       setCurrentUser(resAuthor);
-       setCards(resAllCards);
+        // console.log(resAuthor.data);
+        setCurrentUser(resAuthor.data);
+        setCards(resAllCards.data);
+       
       })
       .catch((err) => {
          console.log('Ошибка. Запрос к серверу не выполнен: ', err)
@@ -76,7 +78,7 @@ function App() {
     setIsThinking(true);
     exApi.setAuthorInfo(authorInfo)
      .then((resAuthor) => {
-      setCurrentUser(resAuthor)
+      setCurrentUser(resAuthor.data)
       closeAllPopups()
      })
      .catch((err) => {
@@ -95,7 +97,7 @@ function App() {
     setIsThinking(true);
     exApi.setAuthorAvatar(avatarInfo)
      .then((resAuthor) => {
-      setCurrentUser(resAuthor)
+      setCurrentUser(resAuthor.data)
       closeAllPopups()
      })
      .catch((err) => {
@@ -114,14 +116,14 @@ function App() {
     setSelectedCard({isOpen:true, cardPicture:card.link, cardText:card.name});
   }
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-
-    // setThinkingInfo(infoText.messageInfo);
+    const isLiked = card.likes.some(i => i === currentUser._id);
+    
     setMessageInfo('messageInfo');
     setInfoOpen(true);
     (isLiked ? exApi.putoffLikeFromCard(card._id) : exApi.putLikeToCard(card._id))    
     .then((newCard) => {
-      setCards((cards) => cards.map((c) => c._id === card._id ? newCard : c));
+      const cardData = newCard.data;
+      setCards((cards) => cards.map((c) => c._id === card._id ? cardData : c));
     })
     .catch((err) => {
       console.log('Ошибка. Запрос к серверу не выполнен: ', err)
@@ -131,7 +133,6 @@ function App() {
    });
   }
   function handleCardDelete(card) {
-    // setThinkingInfo(infoText.messageInfo);
     setMessageInfo('messageInfo');
     setInfoOpen(true);
     exApi.deleteCardFromServer(card._id)    
@@ -149,7 +150,8 @@ function App() {
     setIsThinking(true);
     exApi.addCardToServer(cardInfo)
      .then((resCard) => {
-      setCards([resCard, ...cards]);
+      const cardData = resCard.data;
+      setCards([cardData, ...cards]);
       closeAllPopups()
      })
      .catch((err) => {
@@ -172,11 +174,8 @@ function App() {
   // Авторизация
   function handleTokenCheck(exApi) {
     if (localStorage.getItem('jwt')) {
-      console.log('1');
-      // console.log(localStorage.getItem('jwt'));
       exApi.userCheckToken(localStorage.getItem('jwt')).then((res) => {
         if (res) {
-          console.log(res);
           setMailUserInfo(res.data.email);
           setLoggedIn(true);
           history.push("/");

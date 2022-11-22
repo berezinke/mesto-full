@@ -1,50 +1,24 @@
-// import React from 'react';
-import { baseUrl, baseEndPointReg, baseEndPointAuth, baseMethodAuth, baseTitle,
-  tokenEndPoint, baseMethodValidToken, baseTitleValidToken } 
-  from './Utils.js'
-
 class Api {
   constructor() {
-
-    /**
-     pathToServer, headers1, baseUrl, baseEndPointReg, baseEndPointAuth, baseMethodAuth, baseTitle,
-    baseSuccessReturnAuth, baseSuccessReturnCheck,
-    baseMethodValidToken, baseTitleValidToken, baseSuccessReturnValidToken
-     */
-
-    this._pathToCard = `${baseUrl}/cards`;
-    this._pathToAuthor = `${baseUrl}/users/me`;
+    this._pathToCard = 'https://api.mesto-server.students.nomoredomains.icu/cards';
+    this._pathToAuthor = 'https://api.mesto-server.students.nomoredomains.icu/users/me';
     this._pathToAvatar = this._pathToAuthor + '/avatar';
-    // this._headers = headers;
-    this._baseUrl = baseUrl;
-    this._methodAuth = baseMethodAuth;
-    this._baseTitle = baseTitle;
-    this._baseEndPointReg = baseEndPointReg;
-    this._baseEndPointAuth = baseEndPointAuth;
     
-    this._tokenEndPoint = tokenEndPoint;
-    this._baseMethodValidToken = baseMethodValidToken;
-    this._baseTitleValidToken = baseTitleValidToken;
-
-    this.tokenUser = '';
-
-    /*this._baseUrl = this._baseUrl.bind(this);
-    this._methodAuth = this._methodAuth.bind(this);
-    this._baseTitle = this._baseTitle.bind(this);
-    this._baseEndPointReg = this._baseEndPointReg.bind(this);
-    this._baseEndPointAuth = this._baseEndPointAuth.bind(this);
+    this._baseUrl = 'https://api.mesto-server.students.nomoredomains.icu';
+    this._methodAuth = 'POST';
+    this._baseTitle = {'Accept': 'application/json', "Content-Type": "application/json"};
+    this._baseEndPointReg = '/signup';
+    this._baseEndPointAuth = '/signin';
     
-    this._tokenEndPoint = this._tokenEndPoint.bind(this);
-    this._baseMethodValidToken = this._baseMethodValidToken.bind(this);
-    this._baseTitleValidToken = this._baseTitleValidToken.bind(this);*/
-
-
+    this._baseMethodValidToken = 'GET';
+    this._baseTitleValidToken = {'Accept': 'application/json', "Content-Type": "application/json",
+    "authorization" : "Bearer "};
   };
 
   // Запись и обратно
   _isDone(res) {
     if (res.ok) {
-      return res.json();     
+      return res.json()      
     }
     return res.json()
       .then((err) => {
@@ -55,10 +29,10 @@ class Api {
 
   // Получение информации о карточках
   getInitCards() {
-    console.log('Cards');
-    console.log(this.tokenUser);
+    const headers = this._setArrHeaders();
+
     return fetch(this._pathToCard, {
-      headers:  this._setArrHeaders(this.tokenUser)
+      headers
     }).then((res) => {
       return this._isDone(res)
     })
@@ -67,9 +41,10 @@ class Api {
   
   // Получение иформации об авторе
   getAuthorInfo() {
+    const headers = this._setArrHeaders();
+
     return fetch(this._pathToAuthor, {
-      // headers: this._headers
-      headers:  this._setArrHeaders(this.tokenUser)
+      headers
     }).then((res) => {
       return this._isDone(res)
    })
@@ -77,9 +52,11 @@ class Api {
 
   // Отправка информации об авторе на сервер
   setAuthorInfo({newName, newAbout}) {
+    const headers = this._setArrHeaders();
+
     return fetch(this._pathToAuthor, {
       method: 'PATCH',
-      // headers: this._headers,
+      headers,
       body: JSON.stringify({name: newName, about: newAbout})
     }).then((res) => {
       return this._isDone(res)
@@ -88,10 +65,11 @@ class Api {
 
   // Добавление карточки на сервер
   addCardToServer({newName, newLink}) {
-    
+    const headers = this._setArrHeaders();
+
     return fetch(this._pathToCard, {
       method: 'POST',
-      // headers: this._headers,
+      headers,
       body: JSON.stringify({name: newName, link: newLink})
     }).then((res) => {
       return this._isDone(res)
@@ -101,9 +79,11 @@ class Api {
   // Удаление карточки с сервера
   deleteCardFromServer(idCard) {
     const pathToOneCard = this._pathToCard + '/' + idCard
+    const headers = this._setArrHeaders();
+
     return fetch(pathToOneCard, {
       method: 'DELETE',
-      // headers: this._headers
+      headers
     }).then((res) => {
       return this._isDone(res)
     })
@@ -111,10 +91,11 @@ class Api {
   // Постановка лайка на карточку
   putLikeToCard(idCard) {
     const pathToOneCard = this._pathToCard + '/' + idCard + '/likes'
-    
+    const headers = this._setArrHeaders();
+
     return fetch(pathToOneCard, {
       method: 'PUT',
-      // headers: this._headers
+      headers
     }).then((res) => {
       return this._isDone(res)
     })
@@ -122,20 +103,22 @@ class Api {
   // Снятие лайка с карточки
   putoffLikeFromCard(idCard) {
     const pathToOneCard = this._pathToCard + '/' + idCard + '/likes'
-    
+    const headers = this._setArrHeaders();
+
     return fetch(pathToOneCard, {
       method: 'DELETE',
-      // headers: this._headers
+      headers
     }).then((res) => {
       return this._isDone(res)
     })
   };
   // Отправка информации об аватаре на сервер
   setAuthorAvatar({newAvatar}) {
+    const headers = this._setArrHeaders();
 
     return fetch(this._pathToAvatar, {
       method: 'PATCH',
-      // headers: this._headers,
+      headers,
       body: JSON.stringify({avatar: newAvatar})
     }).then((res) => {
       return this._isDone(res)
@@ -153,31 +136,19 @@ class Api {
       
       return this._isDone(res)})
     .then((res) => {
-      console.log('ok');
-      console.log(res);
-      if (res.token) {
-        console.log('Token');
-        this.tokenUser = res.token;
-        console.log(this.tokenUser);
-      }
-      return res;
+      return res;      
     })
+    .catch((err) => {
+      console.log(err)});
   };
 
   // Регистрация
   userRegister (userEmail, userPassword) {
     const pathToserv = this._baseUrl + this._baseEndPointReg;
 
-    console.log('Reg');
-    console.log(pathToserv);
-    console.log(this._methodAuth);
-    console.log(this._baseTitle);
-
-    // let setHeaders = this._setArrHeaders (methodServ, userJWT)
-
     return fetch(pathToserv, {
       method: this._methodAuth,
-      headers: this._baseTitle,
+      headers: this._baseTitle, // {'Accept': 'application/json', "Content-Type": "application/json"};
       body: JSON.stringify({"email": userEmail, "password": userPassword})    
     })
     .then((res) => {return this._isDone(res)})
@@ -188,64 +159,23 @@ class Api {
   };
 
   // Проверка токена
-  userCheckToken (userJWT) {
-    this._baseTitleValidToken.authorization = this._baseTitleValidToken.authorization + userJWT;
-    let path = this._baseUrl + this._tokenEndPoint; // '/users/me'
-    let arrHeaders = this._baseTitleValidToken;
-    let meTh = this._baseMethodValidToken; // 'GET'
-
-    /* this._baseTitleValidToken.Authorization = this._baseTitleValidToken.Authorization + userJWT;
-    
-    let path = this._baseUrl + this._tokenEndPoint;
-    let arrHeaders = this._baseTitleValidToken;
-    let meTh = this._baseMethodValidToken;
-
-    return fetch(path, {
-      method: meTh,
-      headers: arrHeaders}) */
-    console.log('2');
-    console.log(arrHeaders);
-    console.log(path);
-    console.log(meTh);
-
-    let setHeaders = this._setArrHeaders(meTh, userJWT);
-    console.log('77');
-    console.log(setHeaders);
-    console.log(userJWT);
-
-
-    // return fetch(path, setHeaders)
-    return fetch(path, {
-      method: meTh,
-      headers: arrHeaders})
+  userCheckToken () {
+    const setHeaders = this._setArrHeaders();
+          
+    return fetch(this._pathToAuthor, {
+      method: this._baseMethodValidToken,
+      headers: setHeaders})
     .then((res) => {
       return this._isDone(res)})
-    .then((res) => {
-      console.log('444');
-      console.log(res);
-      console.log('3');
-      this.tokenUser = this._baseTitleValidToken.authorization;
-      return res;
-    })
-    .catch((err) => {
-      console.log('4');
-      console.log(err)});
-
-    // {
-    //   method: meTh,
-    //  headers: arrHeaders}
+    
   }
 
-  _setArrHeaders (userJWT) {
-    let token = userJWT // .replace('Bearer ', '')
-    let arrHeaders = this._baseTitleValidToken;
-
-    token = this._baseTitleValidToken.authorization + token;
-    arrHeaders.authorization = token;
-
-    return arrHeaders
-  };
-
+  _setArrHeaders () {
+    if (!('jwt' in localStorage)) {
+      return this._baseTitle;
+    }
+    return { ...this._baseTitle, authorization: `Bearer ${localStorage.getItem('jwt')}` };
+  }
 };
 
 const exApi = new Api(); //pathToServer, headers

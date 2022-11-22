@@ -24,8 +24,12 @@ export const cardSelector = '#elementTemplate';
 // Данные о группе, токене ...
 // const miCogort = 'cohort-46';
 // export const miToken = '17354b5a-cdf3-4826-b8f6-745070d32c9c';
+
+// Токен: 3f2082c5-eeb8-402f-9378-70e9beb7cba2
+// Идентификатор группы: cohort-47
+
 // export const pathToServer = `https://mesto.nomoreparties.co/v1/${miCogort}`;
-export const baseUrl = 'https://api.mesto-server.students.nomoredomains.icu';
+// export const baseUrl = 'https://api.mesto-server.students.nomoredomains.icu';
 // export const headers = {
   // authorization: miToken,
   // 'Content-Type': 'application/json'
@@ -36,7 +40,7 @@ export const baseUrl = 'https://api.mesto-server.students.nomoredomains.icu';
 export const baseEndPointReg = '/signup';
 export const baseEndPointAuth = '/signin';
 export const baseMethodAuth = 'POST';
-export const baseTitle = {'Accept': 'application/json', "Content-Type": "application/json"};
+
 export const baseBodyAuth = {"password": "somepassword", "email": "email@yandex.ru"};
 // export const baseSuccessReturnAuth = {"data": {"_id": "5f5204c577488bcaa8b7bdf2", "email": "email@yandex.ru"}};
 export const baseBodyCheck = {"password": "dsfsdfsdfsdf", "email": "email@email.ru"};

@@ -1,9 +1,8 @@
 import React from 'react';
-
 import Card from '../components/Card.js';
 import pen  from '../images/pen.svg';
 import plus  from '../images/plus.svg';
-import exApi from '../utils/Api.js';
+// import exApi from '../utils/Api.js';
 
 import {CurrentUserContext} from '../context/CurrentUserContext.js';
 
@@ -12,7 +11,6 @@ function Main(props) {
   const userName = resAuthor.name;
   const userDescription = resAuthor.about;
   const userAvatar = resAuthor.avatar;
-
     return (
       <main >
         <section className="profile">
@@ -54,3 +52,14 @@ function Main(props) {
   }
   
   export default Main;
+
+  /*
+{props.cards.map((card) => (
+            <Card key={card._id}
+                  card = {card}
+                  onCardClick = {props.onCardClick}
+                  onClose = {props.onClose}
+                  onCardLike = {props.onCardLike}
+                  onCardDelete = {props.onCardDelete}/>
+          ))}
+  */
